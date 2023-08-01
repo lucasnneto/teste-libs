@@ -9,11 +9,6 @@ BRANCH=`git rev-parse --abbrev-ref HEAD`
 PROTECTED_BRANCHES="^(main|master|develop)"
 TYPE_BRANCHES="^(FIX|FEAT|REFACTORE)\/ING-\d+$"
 
-if [[ $1 != *"$BRANCH"* ]]
-then
-  echo -e "\n🚫 Você esta commitando (git commit origin $BRANCH).\n" && exit 1
-fi
-
 if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]
 then
   echo -e "\n🚫 Cannot commit to remote $BRANCH branch, please create your own branch and use PR." && exit 1
