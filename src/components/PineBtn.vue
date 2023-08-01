@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  nova: Number;
+  nova: number;
 }>();
 </script>
 

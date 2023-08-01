@@ -1,4 +1,31 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm test
+npm run lint
+
+echo -e "===\n>> Validando nome da Branch"
+
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+PROTECTED_BRANCHES="^(main|master|develop)"
+TYPE_BRANCHES="^(FIX|FEAT|REFACTORE)\/ING-\d+$"
+
+if [[ $1 != *"$BRANCH"* ]]
+then
+  echo -e "\n🚫 Você esta commitando (git commit origin $BRANCH).\n" && exit 1
+fi
+
+if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]
+then
+  echo -e "\n🚫 Cannot commit to remote $BRANCH branch, please create your own branch and use PR." && exit 1
+fi
+
+if [[ "$BRANCH" == $TYPE_BRANCHES ]]
+then
+  echo -e "\n🚫 Cannot commit to remote $BRANCH branch, commit no formato <TIPO>/ING-<NUMERO_CARD>. ex: FIX/ING-1234." && exit 1
+fi
+
+echo -e ">> Finish checking branch name. \n==="
+
+exit 0
+# npm test
+
