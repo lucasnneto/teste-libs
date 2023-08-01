@@ -19,7 +19,7 @@ then
   echo -e "\n🚫 Cannot commit to remote $BRANCH branch, commit no formato <TIPO>/ING-<NUMERO_CARD>. ex: FIX/ING-1234." && exit 1
 fi
 
-echo -e ">> Finish checking branch name. \n==="
+echo -e ">> Finish checking branch name. :) \n==="
 
 exit 0
 # npm test
